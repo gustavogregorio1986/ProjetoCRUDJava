@@ -43,12 +43,13 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cliente> atualizar(@PathVariable Long id, @RequestBody Cliente cliente) {
-        return ResponseEntity.ok(clienteService.atualizar(id, cliente));
+    public ResponseEntity<Cliente> atualizar(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
+        Cliente clienteAtualizado = clienteService.atualizar(id, cliente);
+        return ResponseEntity.ok(clienteAtualizado);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir(@PathVariable Long id) {
+    public ResponseEntity<Void> excluir(@PathVariable("id") Long id) {
         clienteService.excluir(id);
         return ResponseEntity.noContent().build();
     }
